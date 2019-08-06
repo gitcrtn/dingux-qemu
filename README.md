@@ -17,7 +17,14 @@ http://prizma.bmstu.ru/~exmortis/posts/2015-04-23-opendingux-qemu.html
     sudo ./gen_image.sh
 
     # launch qemu with disk image
-    ./run_qemu.sh
+    sudo ./run_qemu.sh
+
+    # file transfer
+    HOST$ sudo ifconfig vtap0 inet 192.168.254.200
+    HOST$ touch transfer-file.txt
+    HOST$ python3 -m http.server
+    QEMU# ifconfig eth0 inet 192.168.254.201
+    QEMU# wget http://192.168.254.200:8000/transfer-file.txt
 
 ## Requirements
 Docker  
